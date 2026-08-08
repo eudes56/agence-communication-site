@@ -1,0 +1,7 @@
+# Dossier de sauvegarde des images sources (non mis en ligne)
+Images/originales/
+
+# Fichiers temporaires
+Thumbs.db
+.DS_Store
+*.log
