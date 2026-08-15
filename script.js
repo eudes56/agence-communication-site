@@ -148,9 +148,48 @@ const initHotspots = () => {
   });
 };
 
+const initContactForm = () => {
+  const form = document.querySelector('.contact-form');
+
+  if (!form) return;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const getValue = (name) => {
+      const field = form.querySelector(`[name="${name}"]`);
+      return field ? field.value.trim() : '';
+    };
+
+    const name = getValue('name');
+    const email = getValue('email');
+    const phone = getValue('phone');
+    const formation = getValue('formation');
+    const message = getValue('message');
+
+    const lines = [
+      'Bonjour, je vous contacte depuis le site web.',
+      '',
+      `Nom : ${name}`,
+      `Email : ${email}`,
+      phone ? `Téléphone : ${phone}` : null,
+      formation ? `Formation visée : ${formation}` : null,
+      '',
+      `Message :`,
+      message,
+    ].filter((line) => line !== null);
+
+    const whatsappUrl =
+      'https://wa.me/22672368738?text=' + encodeURIComponent(lines.join('\n'));
+
+    window.open(whatsappUrl, '_blank', 'noopener');
+  });
+};
+
 initHeroCarousel();
 initTabs();
 initFormationCarousel();
 initAccordions();
 initTileImages();
 initHotspots();
+initContactForm();
